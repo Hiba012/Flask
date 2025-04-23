@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prédiction de Churn Client</title>
+</head>
+<body>
+    <h1>Formulaire de Prédiction</h1>
+    <form method="POST" action="/predict">
+        Credit Score: <input type="text" name="creditscore" required><br><br>
+        Age: <input type="text" name="age" required><br><br>
+        Tenure: <input type="number" name="tenure" min="0" max="10" required><br><br>
+        Balance: <input type="text" name="balance" required><br><br>
+        Nombre de Produits:
+        <select name="numofproducts" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select><br><br>
+        Carte de Crédit:
+        <input type="radio" name="hascrcard" value="1" required>Oui
+        <input type="radio" name="hascrcard" value="0">Non<br><br>
+        Membre Actif:
+        <input type="radio" name="isactivemember" value="1" required>Oui
+        <input type="radio" name="isactivemember" value="0">Non<br><br>
+        Salaire Estimé: <input type="text" name="estimatedsalary" required><br><br>
+        Genre:
+        <input type="radio" name="gender" value="Male" required>Homme
+        <input type="radio" name="gender" value="Female">Femme<br><br>
+        Pays:
+        <select name="geography" required>
+            <option value="France">France</option>
+            <option value="Germany">Germany</option>
+            <option value="Spain">Spain</option>
+        </select><br><br>
+        <input type="submit" value="Prédire">
+    </form>
+
+    {% if prediction is defined %}
+        <h2>Résultat de la prédiction :</h2>
+        {% if prediction == 1 %}
+            <p style="color: red;">❌ Le client risque de quitter.</p>
+        {% else %}
+            <p style="color: green;">✅ Le client restera fidèle.</p>
+        {% endif %}
+    {% endif %}
+</body>
+</html>
